@@ -1,0 +1,39 @@
+# Virtual environment
+.venv/
+venv/
+
+# Python-generated files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter-generated files
+.ipynb_checkpoints/
+
+# VS Code settings
+.vscode/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Downloaded dataset
+data/*.csv
+!data/.gitkeep
+
+# Generated models and plots
+outputs/models/*
+!outputs/models/.gitkeep
+
+outputs/plots/*
+!outputs/plots/.gitkeep
+
+# Test and coverage files
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Operating-system files
+.DS_Store
+Thumbs.db
