@@ -18,7 +18,7 @@ and is not intended for live trading.
 
 ## Data
 
-Historical daily data is downloaded with `yfinance`.
+Historical daily data is downloaded using `yfinance`.
 
 The dataset contains:
 
@@ -29,15 +29,33 @@ The dataset contains:
 - Adjusted Close
 - Volume
 
-The default dataset covers January 2015 through December 2024 and is
-stored at `data/aapl.csv`.
+The default dataset covers January 2015 through December 2024.
+
+Because the generated CSV is excluded from Git, download it after
+cloning the repository:
+
+```powershell
+python src\get_data.py
+```
+
+## Data-cleaning rules
+
+The data layer:
+
+- Parses dates into real datetime values
+- Sorts observations chronologically
+- Removes duplicate trading dates
+- Removes missing and malformed values
+- Rejects zero or negative prices
+- Rejects negative trading volume
+- Validates the expected CSV schema
+- Returns a DataFrame indexed by Date
 
 ## Project structure
 
 ```text
 stock_predictor/
 ├── data/
-│   └── aapl.csv
 ├── notebooks/
 ├── outputs/
 │   ├── models/
@@ -52,5 +70,48 @@ stock_predictor/
 │   ├── lstm_model.py
 │   ├── evaluate.py
 │   └── main.py
+├── tests/
+│   └── test_data_loader.py
 ├── README.md
 └── requirements.txt
+```
+
+## Setup on Windows
+
+Create and activate a virtual environment:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+```
+
+Install dependencies:
+
+```powershell
+python -m pip install -r requirements.txt
+```
+
+Download the dataset:
+
+```powershell
+python src\get_data.py
+```
+
+Run the data loader:
+
+```powershell
+python src\data_loader.py
+```
+
+Run the tests:
+
+```powershell
+python -m pytest -v
+```
+
+## Current status
+
+- Milestone 1: Environment and historical dataset complete
+- Milestone 2: Project architecture complete
+- Milestone 3: Data loading, validation, and cleaning complete
+- Milestone 4: Feature engineering next
