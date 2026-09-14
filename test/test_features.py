@@ -99,7 +99,7 @@ def test_features_do_not_use_future_market_values():
     cutoff_position = 90
     cutoff_date = original_raw.index[cutoff_position]
 
-    future_dates = changed_raw.index[cutoff_position + 1 :]
+    future_dates = changed_raw.index[cutoff_position + 1:]
 
     changed_raw.loc[
         future_dates,
